@@ -36,7 +36,6 @@ module.exports = {
 		time = date.format(now, 'MM_DD_YYYY h-mm-ss')
 		const filePath = path.join(logpath, `${time} log.json`);
     	fs.writeFileSync(filePath, JSON.stringify(info, null, 2));
-    	console.log('File written successfully.', filePath);
 	} catch (error) {
     	console.error(error);
 	}
