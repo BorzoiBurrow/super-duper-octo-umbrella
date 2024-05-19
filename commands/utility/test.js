@@ -11,12 +11,12 @@ module.exports = {
 		.setName('test')
 		.setDescription('Test scenario that logs time and basic things.'),
 	async execute(interaction) {
-		const PermCheck = PermissionsBitField.Flags.ADMINISTRATOR; 
+		// const PermCheck = PermissionsBitField.Flags.ADMINISTRATOR; 
         const memberPermissions = interaction.member.permissions;
-
-        if (!memberPermissions.has(PermCheck)) {
-            return interaction.reply({content: "You do not have permission to use this command!", ephemeral: true });
+        if (!memberPermissions.has(PermissionsBitField.Flags.Administrator)) {
+            return interaction.reply({ content: "You do not have permission to use this command!", ephemeral: true });
         }
+
 
 		const reply = date.format(now, 'MM/DD/YYYY h:mm A [EST]'); 
 		const username = interaction.user.globalName
@@ -29,7 +29,7 @@ module.exports = {
     "log": [
         { "Server": `${server}` },
         { "initiating user": `${username}` },
-        { "time sent back": `${reply}` }
+        { "response": `${reply}` }
     ]
 	};
 	try {

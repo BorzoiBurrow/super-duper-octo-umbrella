@@ -27,18 +27,18 @@ for (const folder of commandFolders) {
 const rest = new REST().setToken(token);
 
 (async () => {
-	try {
-		console.log(`Started refreshing ${commands.length} application (/) commands.`);
+    try {
+        console.log(`Started refreshing ${commands.length} application (/) commands.`);
 
-		const data = await rest.put(
-			Routes.applicationCommands(clientId),
-			{ body: commands },
-            Routes.applicationGuildCommands(clientId, guildId),
-            { body: commands },
-		);
+        // Register global commands
+    const globalData = await rest.put(
+        Routes.applicationCommands(clientId),
+        { body: commands }
+    );
 
-		console.log(`Successfully reloaded ${data.length} application (/) commands.`);
-	} catch (error) {
-		console.error(error);
-	}
+    } catch (error) {
+        console.error(error);
+    } finally {
+        console.log("done!")
+    }
 })();
